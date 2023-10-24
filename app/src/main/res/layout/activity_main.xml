@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingStart="@dimen/_16sdp"
-    android:paddingEnd="@dimen/_16sdp"
-    tools:context=".presentation.MainActivity">
+<layout>
 
-    <TextView
-        android:id="@+id/tvTitle"
-        style="@style/BoldTextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_35sdp"
-        android:text="Rates"
-        android:textSize="@dimen/text_title" />
-
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/tvUpdateDate"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:layout_below="@+id/tvTitle" />
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_16sdp"
+        tools:context=".presentation.MainActivity">
 
-    <TextView
-        android:id="@+id/tvUpdateDate"
-        style="@style/RegularTextStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/_30sdp"
-        android:gravity="center"
-        android:text="Last update: 30/0./2023 -16:00"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/text_small" />
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/BoldTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:text="Rates"
+            android:textSize="@dimen/text_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvUpdateDate"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginBottom="@dimen/_20sdp" />
+
+        <TextView
+            android:id="@+id/tvUpdateDate"
+            style="@style/RegularTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:gravity="center"
+            android:text="Last update: 30/0./2023 -16:00"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/text_small" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
