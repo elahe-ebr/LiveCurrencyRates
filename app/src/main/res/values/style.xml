@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BoldTextStyle">
+        <item name="android:fontFamily">@font/satoshi_bold</item>
+        <item name="fontFamily">@font/satoshi_bold</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="RegularTextStyle">
+        <item name="android:fontFamily">@font/satoshi_regular</item>
+        <item name="fontFamily">@font/satoshi_regular</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
