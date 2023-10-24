@@ -84,6 +84,8 @@ dependencies {
 
     //coroutine
     implementation('org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3')
+
+    implementation "androidx.activity:activity-ktx:1.6.0"
 }
 
 // Allow references to generated code
