@@ -3,7 +3,7 @@ package com.elahe.livecurrencyrates.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elahe.livecurrencyrates.core.base.BaseApiDataState
-import com.elahe.livecurrencyrates.data.RateRepo
+import com.elahe.livecurrencyrates.data.repository.RateRepo
 import com.elahe.livecurrencyrates.data.model.RateModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
     private fun refreshList() {
         viewModelScope.launch {
             try {
-                val response = repo.getRates().collect {
+                 repo.getRates().collect {
                     when (it) {
                         is BaseApiDataState.Loading -> {}
                         is BaseApiDataState.Success -> {
@@ -34,6 +34,7 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
                         }
 
                         is BaseApiDataState.Error -> {}
+                        else -> {}
                     }
                 }
             } catch (e: Exception) {

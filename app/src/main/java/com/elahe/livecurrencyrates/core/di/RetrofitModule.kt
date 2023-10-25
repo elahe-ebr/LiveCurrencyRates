@@ -1,6 +1,6 @@
 package com.elahe.livecurrencyrates.core.di
 
-import com.elahe.livecurrencyrates.api.RateApiService
+import com.elahe.livecurrencyrates.data.api.RateApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

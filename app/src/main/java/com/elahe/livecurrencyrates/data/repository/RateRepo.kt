@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.data
+package com.elahe.livecurrencyrates.data.repository
 
 
 import com.elahe.livecurrencyrates.core.base.BaseApiDataState

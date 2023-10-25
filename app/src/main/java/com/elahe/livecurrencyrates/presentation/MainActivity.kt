@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.elahe.livecurrencyrates.R
 import com.elahe.livecurrencyrates.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -35,5 +36,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchData() {
+        lifecycleScope.launch {
+            mViewModel.rateList.collect {
+                (binding.rvRates.adapter as CurrencyItemAdapter).list = it.toMutableList()
+            }
+        }
     }
 }

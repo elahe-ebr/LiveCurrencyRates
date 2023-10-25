@@ -8,8 +8,13 @@ suspend fun <T> calApi(call: suspend () -> Response<T>) = flow {
     emit(BaseApiDataState.Loading)
     try {
         val response = call()
-        if (response.isSuccessful)
-            emit(BaseApiDataState.Success(response.body()))
+        if (response.isSuccessful) {
+            response.body()?.let {
+                emit(BaseApiDataState.Success(it))
+            }?: kotlin.run {
+                emit(BaseApiDataState.Error("Error"))
+            }
+        }
         else
             emit(BaseApiDataState.Error("Error"))
     } catch (_: Exception) {

@@ -20,13 +20,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tvSymbol"
             style="@style/BoldTextStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:gravity="start"
             tools:text="EUR/USD"
-            app:layout_constraintEnd_toStartOf="@+id/tvRate"
+            app:layout_constraintEnd_toStartOf="@+id/tvPrice"
             android:textSize="@dimen/text_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivIcon"
@@ -43,7 +44,7 @@
             app:tint="@color/green" />
 
         <TextView
-            android:id="@+id/tvRate"
+            android:id="@+id/tvPrice"
             style="@style/RegularTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

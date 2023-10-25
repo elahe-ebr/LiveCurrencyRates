@@ -1,8 +1,8 @@
 package com.elahe.livecurrencyrates.core.di
 
-import com.elahe.livecurrencyrates.data.RateRepoImpl
-import com.elahe.livecurrencyrates.api.RateApiService
-import com.elahe.livecurrencyrates.data.RateRepo
+import com.elahe.livecurrencyrates.data.repository.RateRepoImpl
+import com.elahe.livecurrencyrates.data.api.RateApiService
+import com.elahe.livecurrencyrates.data.repository.RateRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
