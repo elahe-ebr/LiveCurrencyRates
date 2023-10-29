@@ -10,3 +10,4 @@
 * coroutine
 * flow
 * mvvm
+<img src="https://github.com/elahe-ebr/LiveCurrencyRates/assets/76607618/06c01aa5-5c23-476e-a75b-b70681c6b6d5" width="200" height="400" />
