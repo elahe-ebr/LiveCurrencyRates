@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchData() {
         lifecycleScope.launch {
-            mViewModel.rateList.collect {
-                (binding.rvRates.adapter as CurrencyItemAdapter).list = it.toMutableList()
+            mViewModel.rateList.collect { list ->
+                (binding.rvRates.adapter as CurrencyItemAdapter).list = list.toMutableList()
             }
         }
     }

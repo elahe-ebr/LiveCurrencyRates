@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.elahe.livecurrencyrates.data.enum.Indicator
 import com.elahe.livecurrencyrates.data.enum.Symbol
 import com.elahe.livecurrencyrates.data.model.RateModel
 import com.elahe.livecurrencyrates.databinding.LayoutItemCurrenvyBinding
@@ -21,15 +22,17 @@ class CurrencyItemAdapter : RecyclerView.Adapter<CurrencyItemAdapter.ViewHolder>
     inner class ViewHolder(private val binding: LayoutItemCurrenvyBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(rateModel: RateModel) {
+            val context = binding.root.context
             binding.tvSymbol.text = rateModel.symbol.chunked(3).joinToString("/")
             binding.tvPrice.text = String.format("%.4f", rateModel.price)
-            binding.ivIcon.setImageDrawable(
-                binding.root.resources.getDrawable(
-                    Symbol.getSymbolImage(
-                        rateModel.symbol
-                    )
-                )
-            )
+            binding.ivIcon.setImageResource(Symbol.getSymbolImage(rateModel.symbol))
+            if (rateModel.priceColor == Indicator.GREEN) {
+                binding.ivIndicator.setImageResource(Indicator.GREEN.icon)
+                binding.ivIndicator.setColorFilter(context.getColor(Indicator.GREEN.color))
+            } else if (rateModel.priceColor == Indicator.RED) {
+                binding.ivIndicator.setImageResource(Indicator.RED.icon)
+                binding.ivIndicator.setColorFilter(context.getColor(Indicator.RED.color))
+            }
         }
     }
 
