@@ -1,5 +1,6 @@
 package com.elahe.livecurrencyrates.presentation
 
+import android.icu.util.Calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elahe.livecurrencyrates.core.base.BaseApiDataState
@@ -14,6 +15,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +24,9 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
 
     private var _rateList = MutableStateFlow<List<RateModel>>(emptyList())
     val rateList: StateFlow<List<RateModel>> = _rateList
+
+    private val _updateDate = MutableStateFlow(String())
+    val updateDate = _updateDate
 
     private val job = Job()
     private val scope = CoroutineScope(job)
@@ -34,9 +40,17 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
         scope.launch(start = CoroutineStart.LAZY) {
             while (true) {
                 refreshList()
-                delay(2000)
+                getTime()
+                delay(120000)
             }
         }.start()
+    }
+
+    private fun getTime() {
+        _updateDate.value = SimpleDateFormat(
+            "dd/MM/yyyy - hh:mm",
+            Locale.getDefault()
+        ).format(Calendar.getInstance().time)
     }
 
     fun stopRefreshing() {
@@ -53,7 +67,8 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
                             it.data.rates.let { newList ->
                                 if (_rateList.value.isNotEmpty()) {
                                     for (item in newList) {
-                                        val oldItem = _rateList.value.find { it.symbol == item.symbol }
+                                        val oldItem =
+                                            _rateList.value.find { it.symbol == item.symbol }
                                         if (oldItem != null) {
                                             if (item.price >= oldItem.price)
                                                 item.priceColor = Indicator.GREEN

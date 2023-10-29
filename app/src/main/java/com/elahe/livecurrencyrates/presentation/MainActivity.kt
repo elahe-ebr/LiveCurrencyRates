@@ -1,5 +1,6 @@
 package com.elahe.livecurrencyrates.presentation
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -10,7 +11,6 @@ import com.elahe.livecurrencyrates.R
 import com.elahe.livecurrencyrates.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,6 +25,16 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         initList()
         fetchData()
+        setUpdateDate()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setUpdateDate() {
+        lifecycleScope.launch {
+            mViewModel.updateDate.collect {
+                binding.tvUpdateDate.text = "Last updated: $it"
+            }
+        }
     }
 
     private fun initList() {

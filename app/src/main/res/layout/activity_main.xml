@@ -36,7 +36,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/_30sdp"
             android:gravity="center"
-            android:text="Last update: 30/0./2023 -16:00"
+            tools:text="Last update: 30/0./2023 -16:00"
             android:textColor="@color/gray"
             android:textSize="@dimen/text_small" />
 
