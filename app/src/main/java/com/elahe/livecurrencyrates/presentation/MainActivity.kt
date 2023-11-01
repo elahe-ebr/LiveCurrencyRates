@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elahe.livecurrencyrates.R
 import com.elahe.livecurrencyrates.databinding.ActivityMainBinding
+import com.elahe.livecurrencyrates.presentation.adapter.CurrencyItemAdapter
+import com.elahe.livecurrencyrates.presentation.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     private fun fetchData() {
         lifecycleScope.launch {
             mViewModel.rateList.collect { list ->
-                (binding.rvRates.adapter as CurrencyItemAdapter).list = list.toMutableList()
+                (binding.rvRates.adapter as CurrencyItemAdapter).updateRateListItems(list)
             }
         }
     }

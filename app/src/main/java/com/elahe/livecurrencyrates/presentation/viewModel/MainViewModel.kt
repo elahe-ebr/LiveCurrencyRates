@@ -1,10 +1,9 @@
-package com.elahe.livecurrencyrates.presentation
+package com.elahe.livecurrencyrates.presentation.viewModel
 
 import android.icu.util.Calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.elahe.livecurrencyrates.core.base.BaseApiDataState
-import com.elahe.livecurrencyrates.data.enum.Indicator
 import com.elahe.livecurrencyrates.data.repository.RateRepo
 import com.elahe.livecurrencyrates.data.model.RateModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -65,18 +64,6 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
                         is BaseApiDataState.Loading -> {}
                         is BaseApiDataState.Success -> {
                             it.data.rates.let { newList ->
-                                if (_rateList.value.isNotEmpty()) {
-                                    for (item in newList) {
-                                        val oldItem =
-                                            _rateList.value.find { it.symbol == item.symbol }
-                                        if (oldItem != null) {
-                                            if (item.price >= oldItem.price)
-                                                item.priceColor = Indicator.GREEN
-                                            else
-                                                item.priceColor = Indicator.RED
-                                        }
-                                    }
-                                }
                                 _rateList.value = newList
                             }
                         }

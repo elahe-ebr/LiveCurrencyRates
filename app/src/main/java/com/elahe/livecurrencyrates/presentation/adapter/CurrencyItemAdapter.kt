@@ -1,18 +1,19 @@
-package com.elahe.livecurrencyrates.presentation
+package com.elahe.livecurrencyrates.presentation.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.elahe.livecurrencyrates.data.enum.Indicator
 import com.elahe.livecurrencyrates.data.enum.Symbol
 import com.elahe.livecurrencyrates.data.model.RateModel
 import com.elahe.livecurrencyrates.databinding.LayoutItemCurrenvyBinding
-import java.util.ArrayList
+
 
 class CurrencyItemAdapter : RecyclerView.Adapter<CurrencyItemAdapter.ViewHolder>() {
 
-    var list: MutableList<RateModel> = ArrayList()
+    private var list: MutableList<RateModel> = ArrayList()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -46,5 +47,12 @@ class CurrencyItemAdapter : RecyclerView.Adapter<CurrencyItemAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(list[position])
+    }
+
+    fun updateRateListItems(rates: List<RateModel>) {
+        val diffCallback = RateDiffCallback(this.list, rates)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.list = rates.toMutableList()
+        diffResult.dispatchUpdatesTo(this)
     }
 }
