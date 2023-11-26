@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:paddingStart="@dimen/_16sdp"
         android:paddingEnd="@dimen/_16sdp"
-        tools:context=".presentation.MainActivity">
+        tools:context=".ui.activity.MainActivity">
 
         <TextView
             android:id="@+id/tvTitle"

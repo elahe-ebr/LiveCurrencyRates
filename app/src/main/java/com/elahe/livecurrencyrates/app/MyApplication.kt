@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.core
+package com.elahe.livecurrencyrates.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

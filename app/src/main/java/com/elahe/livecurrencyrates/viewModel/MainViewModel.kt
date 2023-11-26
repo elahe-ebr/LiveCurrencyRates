@@ -1,11 +1,12 @@
-package com.elahe.livecurrencyrates.presentation.viewModel
+package com.elahe.livecurrencyrates.viewModel
 
 import android.icu.util.Calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elahe.livecurrencyrates.core.base.BaseApiDataState
-import com.elahe.livecurrencyrates.data.repository.RateRepo
 import com.elahe.livecurrencyrates.data.model.RateModel
+import com.elahe.livecurrencyrates.util.BaseApiDataState
+import com.elahe.livecurrencyrates.data.repository.RateRepo
+import com.elahe.livecurrencyrates.data.model.ResponseModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart

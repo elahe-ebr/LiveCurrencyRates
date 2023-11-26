@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.data.api
+package com.elahe.livecurrencyrates.data.remote
 
 import com.elahe.livecurrencyrates.data.model.ResponseModel
 import retrofit2.Response

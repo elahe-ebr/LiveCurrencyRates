@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.core.base
+package com.elahe.livecurrencyrates.util
 
 sealed class BaseApiDataState<out R> {
     object Loading : BaseApiDataState<Nothing>()

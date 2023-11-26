@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.data.enum
+package com.elahe.livecurrencyrates.enums
 
 import com.elahe.livecurrencyrates.R
 

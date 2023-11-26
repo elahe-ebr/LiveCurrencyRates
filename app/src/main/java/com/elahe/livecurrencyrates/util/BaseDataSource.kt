@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.core.base
+package com.elahe.livecurrencyrates.util
 
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response

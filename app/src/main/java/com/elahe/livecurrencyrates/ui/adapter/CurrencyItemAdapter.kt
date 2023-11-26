@@ -1,12 +1,12 @@
-package com.elahe.livecurrencyrates.presentation.adapter
+package com.elahe.livecurrencyrates.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.elahe.livecurrencyrates.data.enum.Indicator
-import com.elahe.livecurrencyrates.data.enum.Symbol
+import com.elahe.livecurrencyrates.enums.Indicator
+import com.elahe.livecurrencyrates.enums.Symbol
 import com.elahe.livecurrencyrates.data.model.RateModel
 import com.elahe.livecurrencyrates.databinding.LayoutItemCurrenvyBinding
 

@@ -1,6 +1,6 @@
 package com.elahe.livecurrencyrates.data.model
 
-import com.elahe.livecurrencyrates.data.enum.Indicator
+import com.elahe.livecurrencyrates.enums.Indicator
 
 
 data class RateModel(

@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.core.di
+package com.elahe.livecurrencyrates.di
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

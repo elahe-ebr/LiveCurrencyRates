@@ -1,4 +1,4 @@
-package com.elahe.livecurrencyrates.presentation
+package com.elahe.livecurrencyrates.ui.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elahe.livecurrencyrates.R
+import com.elahe.livecurrencyrates.util.BaseApiDataState
 import com.elahe.livecurrencyrates.databinding.ActivityMainBinding
-import com.elahe.livecurrencyrates.presentation.adapter.CurrencyItemAdapter
-import com.elahe.livecurrencyrates.presentation.viewModel.MainViewModel
+import com.elahe.livecurrencyrates.ui.adapter.CurrencyItemAdapter
+import com.elahe.livecurrencyrates.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
