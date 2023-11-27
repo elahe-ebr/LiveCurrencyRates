@@ -50,8 +50,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchData() {
         lifecycleScope.launch {
-            mViewModel.rateList.collect { list ->
-                (binding.rvRates.adapter as CurrencyItemAdapter).updateRateListItems(list)
+            mViewModel.response.collect {
+                when (it) {
+                    is BaseApiDataState.Loading -> {}
+                    is BaseApiDataState.Success -> {
+                        it.data.rates.let { newList ->
+                            (binding.rvRates.adapter as CurrencyItemAdapter).updateRateListItems(newList)
+                        }
+                    }
+
+                    is BaseApiDataState.Error -> {}
+                }
             }
         }
     }
