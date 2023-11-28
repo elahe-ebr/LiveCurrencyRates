@@ -1,7 +1,7 @@
 package com.elahe.livecurrencyrates.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.elahe.livecurrencyrates.enums.Indicator
+import com.elahe.livecurrencyrates.data.Indicator
 import com.elahe.livecurrencyrates.data.model.RateModel
 
 class RateDiffCallback(private val oldList: List<RateModel>, private val newList: List<RateModel>) :

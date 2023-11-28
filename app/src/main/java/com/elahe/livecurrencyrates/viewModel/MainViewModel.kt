@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
             while (true) {
                 refreshList()
                 getTime()
-                delay(12000)
+                delay(120000)
             }
         }.start()
     }
