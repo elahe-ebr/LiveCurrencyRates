@@ -1,35 +1,55 @@
 package com.elahe.livecurrencyrates.di
 
-import com.google.gson.GsonBuilder
+import com.elahe.livecurrencyrates.data.Constants
+import com.elahe.livecurrencyrates.data.remote.RateApiService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
-fun createBaseNetworkClient() = retrofitClient()
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(): OkHttpClient {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-fun retrofitClient(): Retrofit =
-    Retrofit.Builder()
-        .baseUrl("https://lokomond.com/")
-        .client(getOkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create(getGson()))
-        .build()
-
-fun getOkHttpClient(): OkHttpClient {
-
-    val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .addInterceptor {
-            val oldRequest = it.request()
-            val newRequestBuilder = oldRequest.newBuilder()
-            newRequestBuilder.addHeader("Accept", "application/json")
-            newRequestBuilder.method(oldRequest.method(), oldRequest.body())
-            return@addInterceptor it.proceed(newRequestBuilder.build())
+        val headerInterceptor = Interceptor { chain ->
+            val originalRequest = chain.request()
+            val modifiedRequest = originalRequest.newBuilder()
+                .header("Accept", "application/json")
+                .build()
+            chain.proceed(modifiedRequest)
         }
-    return okHttpClient.build()
-}
 
-private fun getGson() = GsonBuilder()
-    .setLenient()
-    .create()
+        return OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(headerInterceptor)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): RateApiService {
+        return retrofit.create(RateApiService::class.java)
+    }
+
+}
