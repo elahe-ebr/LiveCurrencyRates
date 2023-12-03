@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elahe.livecurrencyrates.R
-import com.elahe.livecurrencyrates.util.BaseApiDataState
+import com.elahe.livecurrencyrates.util.CallState
 import com.elahe.livecurrencyrates.databinding.ActivityMainBinding
 import com.elahe.livecurrencyrates.ui.adapter.CurrencyItemAdapter
 import com.elahe.livecurrencyrates.viewModel.MainViewModel
@@ -53,9 +53,9 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             mViewModel.response.collect {
                 when (it) {
-                    is BaseApiDataState.Loading -> {}
+                    is CallState.Loading -> {}
 
-                    is BaseApiDataState.Success -> {
+                    is CallState.Success -> {
                         it.data.rates.let { newList ->
                             (binding.rvRates.adapter as CurrencyItemAdapter).updateRateListItems(
                                 newList
@@ -63,8 +63,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
-                    is BaseApiDataState.Error -> {
-                        Toast.makeText(this@MainActivity, it.error, Toast.LENGTH_SHORT).show()
+                    is CallState.Error -> {
+                        Toast.makeText(this@MainActivity, it.e.message, Toast.LENGTH_SHORT).show()
                     }
                 }
             }

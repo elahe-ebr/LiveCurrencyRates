@@ -3,7 +3,7 @@ package com.elahe.livecurrencyrates.viewModel
 import android.icu.util.Calendar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.elahe.livecurrencyrates.util.BaseApiDataState
+import com.elahe.livecurrencyrates.util.CallState
 import com.elahe.livecurrencyrates.data.model.ResponseModel
 import com.elahe.livecurrencyrates.data.repository.RateRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +22,8 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel() {
 
     private var _response =
-        MutableStateFlow<BaseApiDataState<ResponseModel>>(BaseApiDataState.Loading)
-    val response: StateFlow<BaseApiDataState<ResponseModel>> = _response
+        MutableStateFlow<CallState<ResponseModel>>(CallState.Loading)
+    val response: StateFlow<CallState<ResponseModel>> = _response
 
     private val _updateDate = MutableStateFlow("")
     val updateDate: StateFlow<String> = _updateDate
