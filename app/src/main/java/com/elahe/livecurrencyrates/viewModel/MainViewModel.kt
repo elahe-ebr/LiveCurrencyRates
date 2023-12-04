@@ -39,9 +39,9 @@ class MainViewModel @Inject constructor(private val repo: RateRepo) : ViewModel(
     private fun startRefreshing() {
         scope.launch(start = CoroutineStart.LAZY) {
             while (true) {
+                delay(120000)
                 refreshList()
                 getTime()
-                delay(120000)
             }
         }.start()
     }
