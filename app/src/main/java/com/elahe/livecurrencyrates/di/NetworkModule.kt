@@ -1,6 +1,6 @@
 package com.elahe.livecurrencyrates.di
 
-import com.elahe.livecurrencyrates.data.Constants
+import com.elahe.livecurrencyrates.BuildConfig
 import com.elahe.livecurrencyrates.data.remote.RateApiService
 import dagger.Module
 import dagger.Provides
@@ -16,9 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
     @Singleton
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideRetrofit(): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -30,17 +31,13 @@ object NetworkModule {
             chain.proceed(modifiedRequest)
         }
 
-        return OkHttpClient.Builder()
+        val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(headerInterceptor)
             .build()
-    }
 
-    @Singleton
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
